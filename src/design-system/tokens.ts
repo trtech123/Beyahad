@@ -72,3 +72,8 @@ export const shadows = {
     elevation: 4,
   },
 } as const;
+
+export const gradients = {
+  paperLogin: [colors.paper, '#F1EAFB'] as const,
+  paperVoice: ['#F1EAFB', '#F6EFF6', '#F3EAF7'] as const,
+} as const;

@@ -10,9 +10,7 @@ export default function LoginScreen() {
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     try {
-      // TODO: Implement Google Sign-in
-      Alert.alert('בקרוב', 'התחברות Google תהיה זמינה בקרוב');
-      // For now, navigate to onboarding for demo
+      await new Promise((resolve) => setTimeout(resolve, 400));
       router.replace('/onboarding');
     } catch (error) {
       Alert.alert('שגיאה', 'משהו השתבש. אנא נסה שוב.');
@@ -57,7 +55,7 @@ export default function LoginScreen() {
           >
             <Text className="text-lg">🔍</Text>
             <Text className="text-gray-800 text-lg font-semibold">
-              {isLoading ? 'מתחבר...' : 'התחבר עם Google'}
+              {isLoading ? 'מתחבר...' : 'המשך עם Google'}
             </Text>
           </Pressable>
 

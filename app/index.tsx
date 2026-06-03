@@ -1,7 +1,6 @@
 import { View, Text, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useLocalSearchParams } from 'expo-router';
 
 export default function WelcomeScreen() {
   const router = useRouter();
@@ -27,9 +26,9 @@ export default function WelcomeScreen() {
             ביחד
           </Text>
           <Text className="text-base text-white/80 text-center px-4 leading-6">
-            כדי להתחיל את יוני ושיתקן,{'\n'}
+            כדי להכיר לך אנשים מתאימים,{'\n'}
             נשאל כמה שאלות קצרות על הקהילה שלך{'\n'}
-            ביחד רק חיוני.
+            ונבנה לך פרופיל ראשוני.
           </Text>
         </View>
 

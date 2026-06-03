@@ -1,7 +1,8 @@
-import { View, Text, ScrollView, Pressable, Image } from 'react-native';
+import { View, Text, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
+import { useRouter } from 'expo-router';
 
 interface UserMatch {
   id: string;
@@ -41,17 +42,12 @@ const MOCK_MATCHES: UserMatch[] = [
 ];
 
 export default function MatchesScreen() {
+  const router = useRouter();
   const [currentMatchIndex, setCurrentMatchIndex] = useState(0);
   const currentMatch = MOCK_MATCHES[currentMatchIndex];
 
-  const handleLike = () => {
-    // Move to next match
-    setCurrentMatchIndex((prev) => (prev + 1) % MOCK_MATCHES.length);
-  };
-
-  const handlePass = () => {
-    // Move to next match
-    setCurrentMatchIndex((prev) => (prev + 1) % MOCK_MATCHES.length);
+  const handleNextMatch = () => {
+    setCurrentMatchIndex((prev) => prev + 1);
   };
 
   if (!currentMatch) {
@@ -64,6 +60,14 @@ export default function MatchesScreen() {
           <Text className="text-gray-600 text-center">
             נחפש עוד אנשים מתאימים בשבילך!
           </Text>
+          <Pressable
+            onPress={() => setCurrentMatchIndex(0)}
+            className="mt-6 bg-purple-600 px-6 py-3 rounded-full"
+          >
+            <Text className="text-white font-semibold">
+              הצג התאמות מחדש
+            </Text>
+          </Pressable>
         </View>
       </SafeAreaView>
     );
@@ -77,7 +81,7 @@ export default function MatchesScreen() {
           <Text className="text-2xl font-bold text-gray-800">
             ביחד
           </Text>
-          <Pressable>
+          <Pressable onPress={() => router.push('/(tabs)/profile')}>
             <Ionicons name="settings-outline" size={24} color="#6B7280" />
           </Pressable>
         </View>
@@ -142,20 +146,23 @@ export default function MatchesScreen() {
       <View className="px-6 py-6 bg-white border-t border-gray-200">
         <View className="flex-row space-x-4 justify-center">
           <Pressable
-            onPress={handlePass}
+            onPress={handleNextMatch}
             className="w-16 h-16 bg-gray-100 rounded-full items-center justify-center"
           >
             <Ionicons name="close" size={24} color="#EF4444" />
           </Pressable>
 
           <Pressable
-            onPress={handleLike}
+            onPress={handleNextMatch}
             className="w-16 h-16 bg-purple-600 rounded-full items-center justify-center"
           >
             <Ionicons name="heart" size={24} color="white" />
           </Pressable>
 
-          <Pressable className="w-16 h-16 bg-blue-100 rounded-full items-center justify-center">
+          <Pressable
+            onPress={() => router.push('/(tabs)/messages')}
+            className="w-16 h-16 bg-blue-100 rounded-full items-center justify-center"
+          >
             <Ionicons name="chatbubble" size={20} color="#3B82F6" />
           </Pressable>
         </View>

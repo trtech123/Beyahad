@@ -5,9 +5,11 @@ export default function OnboardingIndex() {
   const router = useRouter();
 
   useEffect(() => {
-    // Redirect to first step
-    router.replace('/onboarding/step-1');
-  }, []);
+    router.replace({
+      pathname: '/onboarding/step-[id]',
+      params: { id: '1' },
+    });
+  }, [router]);
 
   return null;
 }

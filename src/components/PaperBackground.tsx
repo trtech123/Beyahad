@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ViewStyle } from 'react-native';
-import { colors } from '../design-system';
+import { colors, gradients } from '../design-system';
 
 interface PaperBackgroundProps {
   style?: ViewStyle;
@@ -13,9 +13,9 @@ export function PaperBackground({ style, children, variant = 'default' }: PaperB
   const getGradientColors = () => {
     switch (variant) {
       case 'login':
-        return [colors.paper, '#F1EAFB'] as const;
+        return gradients.paperLogin;
       case 'voice':
-        return ['#F1EAFB', '#F6EFF6', '#F3EAF7'] as const;
+        return gradients.paperVoice;
       case 'default':
       default:
         return [colors.paper, colors.paper] as const;

@@ -7,7 +7,7 @@ export default function OnboardingComplete() {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.replace('/(tabs)');
+    router.replace('/(tabs)/matches');
   };
 
   return (

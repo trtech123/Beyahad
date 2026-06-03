@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(tar -tf \"/Users/dvirmagen/.claude/projects/-Users-dvirmagen-Desktop-Projects-Beyahad/a9386c3a-58bd-4908-ab93-1aaec3ee9e6a/tool-results/webfetch-1780489429122-iydrkx.bin\")",
+      "Bash(tar -xf \"/Users/dvirmagen/.claude/projects/-Users-dvirmagen-Desktop-Projects-Beyahad/a9386c3a-58bd-4908-ab93-1aaec3ee9e6a/tool-results/webfetch-1780489429122-iydrkx.bin\")",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(node --loader tsx /tmp/test-imports.ts)",
+      "Bash(npm ls *)",
+      "Bash(npm run *)"
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Pressable } from 'react-native';
+import { Alert, View, Text, FlatList, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -44,7 +44,10 @@ const MOCK_CHATS: ChatPreview[] = [
 
 export default function MessagesScreen() {
   const renderChatItem = ({ item }: { item: ChatPreview }) => (
-    <Pressable className="flex-row items-center px-6 py-4 bg-white border-b border-gray-100">
+    <Pressable
+      onPress={() => Alert.alert(item.userName, item.lastMessage)}
+      className="flex-row items-center px-6 py-4 bg-white border-b border-gray-100"
+    >
       {/* Profile Photo */}
       <View className="relative">
         <View className="w-12 h-12 bg-purple-100 rounded-full items-center justify-center">
@@ -96,7 +99,7 @@ export default function MessagesScreen() {
           <Text className="text-2xl font-bold text-gray-800">
             הודעות
           </Text>
-          <Pressable>
+          <Pressable onPress={() => Alert.alert('הודעה חדשה', 'בחר/י התאמה קיימת כדי להתחיל שיחה.')}>
             <Ionicons name="create-outline" size={24} color="#6366f1" />
           </Pressable>
         </View>

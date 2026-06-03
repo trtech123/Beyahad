@@ -1,6 +1,7 @@
-import { View, Text, ScrollView, Pressable } from 'react-native';
+import { Alert, View, Text, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { useState } from 'react';
 
 interface CommunityEvent {
   id: string;
@@ -89,6 +90,16 @@ const getEventTypeName = (type: CommunityEvent['type']) => {
 };
 
 export default function CommunityScreen() {
+  const [registeredEventIds, setRegisteredEventIds] = useState<string[]>([]);
+
+  const handleRegister = (event: CommunityEvent) => {
+    setRegisteredEventIds((current) =>
+      current.includes(event.id)
+        ? current.filter((id) => id !== event.id)
+        : [...current, event.id]
+    );
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
       {/* Header */}
@@ -97,7 +108,7 @@ export default function CommunityScreen() {
           <Text className="text-2xl font-bold text-gray-800">
             קהילה
           </Text>
-          <Pressable>
+          <Pressable onPress={() => Alert.alert('אירוע חדש', 'יצירת אירועים תתווסף בהמשך.')}>
             <Ionicons name="add" size={24} color="#6366f1" />
           </Pressable>
         </View>
@@ -110,15 +121,15 @@ export default function CommunityScreen() {
             <View className="flex-row justify-around">
               <View className="items-center">
                 <Text className="text-2xl font-bold text-purple-600">12</Text>
-                <Text className="text-sm text-gray-600">אירועים השבוע</Text>
+                <Text className="text-sm text-gray-600">אירועים החודש</Text>
               </View>
               <View className="items-center">
                 <Text className="text-2xl font-bold text-purple-600">150</Text>
                 <Text className="text-sm text-gray-600">חברי קהילה</Text>
               </View>
               <View className="items-center">
-                <Text className="text-2xl font-bold text-purple-600">8</Text>
-                <Text className="text-sm text-gray-600">משתתפים חדשים</Text>
+                <Text className="text-2xl font-bold text-purple-600">{registeredEventIds.length}</Text>
+                <Text className="text-sm text-gray-600">הרשמות שלי</Text>
               </View>
             </View>
           </View>
@@ -133,6 +144,7 @@ export default function CommunityScreen() {
           {MOCK_EVENTS.map((event) => (
             <Pressable
               key={event.id}
+              onPress={() => Alert.alert(event.title, `${event.description}\n\n${event.date} בשעה ${event.time}\n${event.location}`)}
               className="bg-white rounded-2xl p-4 mb-4 shadow-sm"
             >
               <View className="flex-row items-start">
@@ -179,9 +191,16 @@ export default function CommunityScreen() {
                         </Text>
                       </View>
 
-                      <Pressable className="bg-purple-600 px-4 py-2 rounded-full">
+                      <Pressable
+                        onPress={() => handleRegister(event)}
+                        className={`px-4 py-2 rounded-full ${
+                          registeredEventIds.includes(event.id)
+                            ? 'bg-green-600'
+                            : 'bg-purple-600'
+                        }`}
+                      >
                         <Text className="text-white font-medium text-sm">
-                          הרשמה
+                          {registeredEventIds.includes(event.id) ? 'נרשמת' : 'הרשמה'}
                         </Text>
                       </Pressable>
                     </View>

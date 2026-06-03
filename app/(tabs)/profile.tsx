@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Pressable } from 'react-native';
+import { Alert, View, Text, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -14,7 +14,7 @@ export default function ProfileScreen() {
           <Text className="text-2xl font-bold text-gray-800">
             הפרופיל שלי
           </Text>
-          <Pressable>
+          <Pressable onPress={() => Alert.alert('הגדרות', 'מסך ההגדרות יתווסף בהמשך.')}>
             <Ionicons name="settings-outline" size={24} color="#6B7280" />
           </Pressable>
         </View>
@@ -41,7 +41,10 @@ export default function ProfileScreen() {
             </Text>
           </View>
 
-          <Pressable className="mt-4 bg-purple-600 px-6 py-2 rounded-full">
+          <Pressable
+            onPress={() => Alert.alert('עריכת פרופיל', 'עריכת פרופיל מלאה תתווסף בהמשך.')}
+            className="mt-4 bg-purple-600 px-6 py-2 rounded-full"
+          >
             <Text className="text-white font-semibold">
               ערוך פרופיל
             </Text>
@@ -68,7 +71,10 @@ export default function ProfileScreen() {
 
         {/* Menu Items */}
         <View className="bg-white mx-6 rounded-2xl shadow-sm overflow-hidden">
-          <Pressable className="flex-row items-center justify-between px-4 py-4 border-b border-gray-100">
+          <Pressable
+            onPress={() => router.push('/(tabs)/matches')}
+            className="flex-row items-center justify-between px-4 py-4 border-b border-gray-100"
+          >
             <View className="flex-row items-center">
               <Ionicons name="heart-outline" size={20} color="#6366f1" />
               <Text className="text-gray-800 font-medium ml-3">
@@ -78,7 +84,10 @@ export default function ProfileScreen() {
             <Ionicons name="chevron-back" size={20} color="#9CA3AF" />
           </Pressable>
 
-          <Pressable className="flex-row items-center justify-between px-4 py-4 border-b border-gray-100">
+          <Pressable
+            onPress={() => router.push('/(tabs)/community')}
+            className="flex-row items-center justify-between px-4 py-4 border-b border-gray-100"
+          >
             <View className="flex-row items-center">
               <Ionicons name="people-outline" size={20} color="#6366f1" />
               <Text className="text-gray-800 font-medium ml-3">
@@ -88,7 +97,10 @@ export default function ProfileScreen() {
             <Ionicons name="chevron-back" size={20} color="#9CA3AF" />
           </Pressable>
 
-          <Pressable className="flex-row items-center justify-between px-4 py-4 border-b border-gray-100">
+          <Pressable
+            onPress={() => router.push('/(tabs)/messages')}
+            className="flex-row items-center justify-between px-4 py-4 border-b border-gray-100"
+          >
             <View className="flex-row items-center">
               <Ionicons name="notifications-outline" size={20} color="#6366f1" />
               <Text className="text-gray-800 font-medium ml-3">
@@ -98,7 +110,10 @@ export default function ProfileScreen() {
             <Ionicons name="chevron-back" size={20} color="#9CA3AF" />
           </Pressable>
 
-          <Pressable className="flex-row items-center justify-between px-4 py-4 border-b border-gray-100">
+          <Pressable
+            onPress={() => Alert.alert('פרטיות ובטיחות', 'העדפות פרטיות ובטיחות יתווספו בהמשך.')}
+            className="flex-row items-center justify-between px-4 py-4 border-b border-gray-100"
+          >
             <View className="flex-row items-center">
               <Ionicons name="shield-outline" size={20} color="#6366f1" />
               <Text className="text-gray-800 font-medium ml-3">
@@ -108,7 +123,10 @@ export default function ProfileScreen() {
             <Ionicons name="chevron-back" size={20} color="#9CA3AF" />
           </Pressable>
 
-          <Pressable className="flex-row items-center justify-between px-4 py-4">
+          <Pressable
+            onPress={() => Alert.alert('עזרה ותמיכה', 'אפשר לפנות לצוות הקהילה דרך ההודעות.')}
+            className="flex-row items-center justify-between px-4 py-4"
+          >
             <View className="flex-row items-center">
               <Ionicons name="help-circle-outline" size={20} color="#6366f1" />
               <Text className="text-gray-800 font-medium ml-3">
@@ -136,7 +154,7 @@ export default function ProfileScreen() {
             תחומי עניין
           </Text>
           <View className="flex-row flex-wrap gap-2">
-            {['לימוד תורה', 'התנדבות', 'טיולים', 'טכנולוgia', 'משפחה', 'קהילה'].map((interest, index) => (
+            {['לימוד תורה', 'התנדבות', 'טיולים', 'טכנולוגיה', 'משפחה', 'קהילה'].map((interest, index) => (
               <View key={index} className="bg-purple-100 px-3 py-1 rounded-full">
                 <Text className="text-purple-600 font-medium">
                   {interest}
